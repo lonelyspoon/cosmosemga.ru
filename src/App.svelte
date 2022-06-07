@@ -28,7 +28,7 @@ let loadsign = "Loading"
 const loader = new GLTFLoader();
 let semga
 loader.load(
-	'http://localhost:5501/3D/scene.gltf',
+	'http://localhost:80/3D/scene.gltf',
 	function (gltf) {
 
 		semga = gltf.scene.children[0]
