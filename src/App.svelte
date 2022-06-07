@@ -23,44 +23,44 @@ const camera = new PerspectiveCamera(
   1000
 );
 
-const loader = new GLTFLoader();
+let loadsign = "Loading"
 
+const loader = new GLTFLoader();
+let semga
 loader.load(
-	'3D/popa.gltf',
+	'http://localhost:5501/3D/scene.gltf',
 	function (gltf) {
-		scene.add(gltf.scene)
+
+		semga = gltf.scene.children[0]
+		semga.scale.set = (0.25, 0.25, 0.25)
+		scene.add(semga)
+		function animate() {
+  requestAnimationFrame(animate);
+
+  semga.rotation.z += 0.01;
+
+  renderer.render(scene, camera);
+}
+animate();
+loadsign = "Внимание"
+
 	}
 )
 
 console.log(loader)
 
 
-const geometry = new IcosahedronGeometry();
-const material = new MeshNormalMaterial();
-const mesh = new Mesh(geometry, material);
-scene.add(mesh);
 
 
-
-camera.position.z = 5;
+camera.position.z = 25;
 
 const renderer = new WebGLRenderer({ alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
-
-function animate() {
-  requestAnimationFrame(animate);
-
-  mesh.rotation.x += 0.01;
-  mesh.rotation.y += 0.01;
-
-  renderer.render(scene, camera);
-}
-animate();
 </script>
 
 <main>
-	<h1>{name}!</h1>
+	<h1>{loadsign}!</h1>
 	<p>Даша греет кастрюли</p>
 	<h2>Спасибо за внимание</h2>
 </main>
